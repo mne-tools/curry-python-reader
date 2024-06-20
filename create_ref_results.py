@@ -32,9 +32,12 @@ test_ref_folder         = test_folder + "tests_ref_output\\"
 raw_float_cdt           = "Float.cdt"
 legacy_raw_float_dat    = "Legacy.dat"
 hpi_cdt                 = "HPI.cdt"
+meg_eeg_cdt             = "MEG2085.cdt"
 
 create_reference_output(raw_float_cdt, 'continuos')
 
 create_reference_output(legacy_raw_float_dat, 'epochs')
 
 create_reference_output(hpi_cdt, 'hpi')
+
+create_reference_output(meg_eeg_cdt, 'meg_eeg')

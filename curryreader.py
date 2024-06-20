@@ -243,16 +243,18 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
     landmarks = []
     landmarkslabels = []    
 
-    # scan for SENSORS (occurs four times per channel group)
+    # scan for LANDMARKS (occurs four times per channel group)
     ix = findtokens('\nLANDMARKS', contents)   
     nc = 0
     totallandmarks = 0
+    numlandmarksgroup = []                              # number of landmarks per group
 
     if ix:
         for i in range(3,len(ix),4):                    # first pass over groups to find total of landmarks
             text = contents[ix[i - 1] : ix[i]]
             text = text[text.find('\n', 1):].splitlines()[1:]
             totallandmarks += len(text)
+            numlandmarksgroup.append(len(text))
 
         lmpositions = np.zeros([totallandmarks, 3])                  
         for i in range(3,len(ix),4):                    # loop over channel groups
@@ -270,14 +272,16 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
     # landmark labels
     ix = findtokens('\nLM_REMARKS', contents)   
     landmarkslabels = [''] * totallandmarks
-    start = 0
+    startindex = 0
+    count = 0
     
     if ix and totallandmarks:               
         for i in range(3,len(ix),4):                    # loop over channel groups
             text = contents[ix[i - 1] : ix[i]]
             text = text[text.find('\n', 1):].splitlines()[1:]
-            landmarkslabels[start:len(text)] = text
-            start += len(text)
+            landmarkslabels[startindex : startindex + len(text)] = text
+            startindex += numlandmarksgroup[count]
+            count += 1
 
     ##########################################################################
     # read sensor locations from label file

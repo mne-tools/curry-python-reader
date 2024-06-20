@@ -14,6 +14,7 @@ ascii_cdt               = test_folder + "ASCII.cdt"
 legacy_raw_float_dat    = test_folder + "Legacy.dat"
 ascii_dat               = test_folder + "Legacy ASCII.dat"
 hpi_cdt                 = test_folder + "HPI.cdt"
+meg_eeg_cdt             = test_folder + "MEG2085.cdt"
 missing_params_cdt      = test_folder + "Missing Parameters.cdt"
 missing_data_cdt        = test_folder + "Missing Data.cdt"
 compressed_cdt          = test_folder + "Compressed.cdt"
@@ -25,6 +26,8 @@ ref_data_epochs         =  test_ref_folder + "ref_data_epochs.npy"
 ref_params_epochs       =  test_ref_folder + "ref_params_epochs.txt"
 ref_data_hpi            =  test_ref_folder + "ref_data_hpi.npy"
 ref_params_hpi          =  test_ref_folder + "ref_params_hpi.txt"
+ref_data_meg_eeg        =  test_ref_folder + "ref_data_meg_eeg.npy"
+ref_params_meg_eeg      =  test_ref_folder + "ref_params_meg_eeg.txt"
 
 # Tests raw-float-cdt format with continuos data, alternative parameter file (dpo), 
 # data-info, labels, events, annotations, sensor locations and impedance check
@@ -84,6 +87,19 @@ def test_hpi():
     currydata.pop('data')
     params_output = compose_output(currydata)
     ref_params = open(ref_params_hpi).read()  
+    assert(params_output == ref_params)
+    
+# Tests raw-float-cdt format with continuos data, multiple groups, 
+# data-info, labels, sensor locations, landmarks and headshape points
+def test_meg_eeg():
+    
+    currydata = cr.read(meg_eeg_cdt, plot)   
+    ref_data = np.load(ref_data_meg_eeg)
+    assert_allclose(currydata['data'], ref_data)
+    
+    currydata.pop('data')
+    params_output = compose_output(currydata)
+    ref_params = open(ref_params_meg_eeg).read()  
     assert(params_output == ref_params)
     
 # Test compressed format
