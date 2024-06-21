@@ -3,11 +3,7 @@
 
 name: Python package
 
-on:
-  push:
-    branches: [ "fernandogasca-workflow-1" ]
-  pull_request:
-    branches: [ "fernandogasca-workflow-1" ]
+on: [push]
 
 jobs:
   build:
