@@ -7,8 +7,8 @@ from create_ref_results import compose_output
 plot = 0
 tol = 1e-4
 
-test_folder             = "test_data//"
-test_ref_folder         = test_folder + "tests_ref_output//" 
+test_folder             = "//test_data//"
+test_ref_folder         = test_folder + "//tests_ref_output//" 
 raw_float_cdt           = test_folder + "Float.cdt"
 ascii_cdt               = test_folder + "ASCII.cdt"
 legacy_raw_float_dat    = test_folder + "Legacy.dat"
