@@ -1,3 +1,4 @@
+import os
 import curryreader as cr
 import numpy as np
 
@@ -14,11 +15,11 @@ def compose_output(data):
 
 def create_reference_output(test_file, ref_output_case):
     
-    currydata = cr.read(test_folder + test_file, 0)
+    currydata = cr.read(os.path.join(test_folder, test_file), 0)
 
-    f = open(test_ref_folder + 'ref_params_' + ref_output_case + '.txt', 'w')
+    f = open(os.path.join(test_ref_folder, 'ref_params_' + ref_output_case + '.txt'), 'w')
 
-    np.save(test_ref_folder + 'ref_data_' + ref_output_case, currydata['data'])
+    np.save(os.path.join(test_ref_folder, 'ref_data_' + ref_output_case), currydata['data'])
     
     currydata.pop('data')
     output = compose_output(currydata)
@@ -27,8 +28,8 @@ def create_reference_output(test_file, ref_output_case):
     f.close()
 #############
 
-test_folder             = "test_data\\"
-test_ref_folder         = test_folder + "tests_ref_output\\" 
+test_folder             = "test_data"
+test_ref_folder         = os.path.join(test_folder, "tests_ref_output") 
 raw_float_cdt           = "Float.cdt"
 legacy_raw_float_dat    = "Legacy.dat"
 hpi_cdt                 = "HPI.cdt"
