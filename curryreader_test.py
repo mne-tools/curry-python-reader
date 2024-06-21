@@ -1,3 +1,4 @@
+import os
 import curryreader as cr
 import numpy as np
 import pytest
@@ -7,27 +8,27 @@ from create_ref_results import compose_output
 plot = 0
 tol = 1e-4
 
-test_folder             = "test_data\\"
-test_ref_folder         = test_folder + "tests_ref_output\\" 
-raw_float_cdt           = test_folder + "Float.cdt"
-ascii_cdt               = test_folder + "ASCII.cdt"
-legacy_raw_float_dat    = test_folder + "Legacy.dat"
-ascii_dat               = test_folder + "Legacy ASCII.dat"
-hpi_cdt                 = test_folder + "HPI.cdt"
-meg_eeg_cdt             = test_folder + "MEG2085.cdt"
-missing_params_cdt      = test_folder + "Missing Parameters.cdt"
-missing_data_cdt        = test_folder + "Missing Data.cdt"
-compressed_cdt          = test_folder + "Compressed.cdt"
+test_folder             = "test_data"
+test_ref_folder         = os.path.join(test_folder, "tests_ref_output") 
+raw_float_cdt           = os.path.join(test_folder, "Float.cdt")
+ascii_cdt               = os.path.join(test_folder, "ASCII.cdt")
+legacy_raw_float_dat    = os.path.join(test_folder, "Legacy.dat")
+ascii_dat               = os.path.join(test_folder, "Legacy ASCII.dat")
+hpi_cdt                 = os.path.join(test_folder, "HPI.cdt")
+meg_eeg_cdt             = os.path.join(test_folder, "MEG2085.cdt")
+missing_params_cdt      = os.path.join(test_folder, "Missing Parameters.cdt")
+missing_data_cdt        = os.path.join(test_folder, "Missing Data.cdt")
+compressed_cdt          = os.path.join(test_folder, "Compressed.cdt")
 
 # reference outputs
-ref_data_continuos      =  test_ref_folder + "ref_data_continuos.npy"
-ref_params_continuos    =  test_ref_folder + "ref_params_continuos.txt"
-ref_data_epochs         =  test_ref_folder + "ref_data_epochs.npy"
-ref_params_epochs       =  test_ref_folder + "ref_params_epochs.txt"
-ref_data_hpi            =  test_ref_folder + "ref_data_hpi.npy"
-ref_params_hpi          =  test_ref_folder + "ref_params_hpi.txt"
-ref_data_meg_eeg        =  test_ref_folder + "ref_data_meg_eeg.npy"
-ref_params_meg_eeg      =  test_ref_folder + "ref_params_meg_eeg.txt"
+ref_data_continuos      =  os.path.join(test_ref_folder, "ref_data_continuos.npy")
+ref_params_continuos    =  os.path.join(test_ref_folder, "ref_params_continuos.txt")
+ref_data_epochs         =  os.path.join(test_ref_folder, "ref_data_epochs.npy")
+ref_params_epochs       =  os.path.join(test_ref_folder, "ref_params_epochs.txt")
+ref_data_hpi            =  os.path.join(test_ref_folder, "ref_data_hpi.npy")
+ref_params_hpi          =  os.path.join(test_ref_folder, "ref_params_hpi.txt")
+ref_data_meg_eeg        =  os.path.join(test_ref_folder, "ref_data_meg_eeg.npy")
+ref_params_meg_eeg      =  os.path.join(test_ref_folder, "ref_params_meg_eeg.txt")
 
 # Tests raw-float-cdt format with continuos data, alternative parameter file (dpo), 
 # data-info, labels, events, annotations, sensor locations and impedance check

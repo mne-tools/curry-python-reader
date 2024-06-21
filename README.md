@@ -1,3 +1,5 @@
+![badge](https://github.com/neuroscan/curry-python-reader/actions/workflows/curryreader.yml/badge.svg?event=push)
+
 # CURRY Reader For Python
 This is an open-source tool which allows to load CURRY data into Python. It supports: raw float (.cdt), ascii (.cdt), legacy raw float (.dat) and legacy ascii (.dat).
 
