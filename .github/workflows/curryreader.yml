@@ -5,14 +5,14 @@ name: Python package
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "fernandogasca-workflow-1" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "fernandogasca-workflow-1" ]
 
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
