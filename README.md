@@ -25,7 +25,7 @@ pip install -r requirements.txt --user
 
 # Output As Dictionary With Keys
     'data'              functional data matrix (e.g. EEG, MEG) with dimensions (samples, channels)
-    'info'              data information with keys: {'samples', 'channels', 'trials/epochs', 'sampling', 'frequency'}
+    'info'              data information with keys: {'samples', 'channels', 'trials', 'samplingfreq'}
     'labels'            channel labels
     'sensorpos'         channel locations [x,y,z]
     'events'            events matrix where every row corresponds to: [event latency, event type, event start, event stop]
