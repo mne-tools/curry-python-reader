@@ -1,0 +1,71 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatch-vcs", "hatchling"]
+
+[project]
+authors = [
+  {email = "fgasca@neuroscan.com", name = "Fernando Gasca"},
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved",
+  'Topic :: Software Development',
+  'Topic :: Scientific/Engineering',
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "certifi>=2020.6.20",
+  "cycler>=0.10.0",
+  "kiwisolver>=1.2.0",
+  "matplotlib>=3.3.2",
+  "numpy>=1.19.2",
+  "Pillow>=8.0.1",
+  "pip>=21.0.1",
+  "pyparsing>=2.4.7",
+  "python-dateutil>=2.8.1",
+  "setuptools>=50.3.2",
+  "six>=1.15.0",
+]
+description = "File reader for Compumedics Neuroscan data formats (.cdt, .dat)."
+dynamic = ["version"]
+keywords = [
+  "brain",
+  "EEG",
+  "MEG",
+  "neuroimaging",
+  "neuroscience",
+]
+license = {text = "BSD-3-Clause"}
+maintainers = [{email = "dan@mccloy.info", name = "Dan McCloy"}]
+name = "curryreader"
+readme = {content-type = "text/markdown", file = "README.md"}
+requires-python = ">= 3.7"
+
+[project.urls]
+"Bug Tracker" = "https://github.com/mne-tools/curry-python-reader/issues/"
+Documentation = "https://github.com/mne-tools/curry-python-reader/README.md"
+Download = "https://pypi.org/project/curryreader/#files"
+Forum = "https://mne.discourse.group/"
+"Source Code" = "https://github.com/mne-tools/curry-python-reader/"
+
+[tool.hatch.build]
+exclude = [
+  "/*.pyproj",
+  "/*.sln",
+  "/*.toml",
+  "/*.txt",
+  "/.*",
+  "/test_data",
+  "/setup.py",
+  "/curryreader_test.py",
+]  # tracked by git, but we don't want to ship those files
+
+[tool.hatch.version]
+raw-options = {version_scheme = "release-branch-semver"}
+source = "vcs"
+
+[tool.tomlsort]
+all = true
+ignore_case = true
+spaces_before_inline_comment = 2
+trailing_comma_inline_array = true
