@@ -75,7 +75,7 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
             if not filepath:
                 raise Exception
         except ImportError as e:
-            raise ImportError(e)
+            raise
         except:
             raise Exception("Unable to open file")
     else:
