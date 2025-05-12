@@ -6,6 +6,14 @@ import tkinter as tk
 from tkinter import filedialog
 import matplotlib.pyplot as plt
 
+try:
+    from importlib.metadata import version
+
+    __version__ = version("curryreader")
+except Exception:
+    __version__ = "0.0.0"
+
+
 def read(inputfilename='', plotdata = 1, verbosity = 2):
     """Curry Reader Help
 
