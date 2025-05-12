@@ -2,8 +2,6 @@ import os
 import sys
 import logging as log
 import numpy as np
-import tkinter as tk
-from tkinter import filedialog
 import matplotlib.pyplot as plt
 
 try:
@@ -50,6 +48,9 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
    
     if inputfilename == '':
         try:
+            import tkinter as tk
+            from tkinter import filedialog
+
             # create root window for filedialog
             root = tk.Tk()
             root.withdraw()
