@@ -2,9 +2,15 @@ import os
 import sys
 import logging as log
 import numpy as np
-import tkinter as tk
-from tkinter import filedialog
 import matplotlib.pyplot as plt
+
+try:
+    from importlib.metadata import version
+
+    __version__ = version("curryreader")
+except Exception:
+    __version__ = "0.0.0"
+
 
 def read(inputfilename='', plotdata = 1, verbosity = 2):
     """Curry Reader Help
@@ -42,6 +48,9 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
    
     if inputfilename == '':
         try:
+            import tkinter as tk
+            from tkinter import filedialog
+
             # create root window for filedialog
             root = tk.Tk()
             root.withdraw()
@@ -65,6 +74,8 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
             # handle cancel
             if not filepath:
                 raise Exception
+        except ImportError:
+            raise
         except:
             raise Exception("Unable to open file")
     else:
