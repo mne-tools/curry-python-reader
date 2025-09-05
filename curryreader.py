@@ -85,7 +85,7 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
     filename = os.path.basename(filepath)
 
     try:
-        basename, extension = filepath.split(".", maxsplit=1)
+        basename, extension = filepath.rsplit(".", maxsplit=1)
     except:
         raise Exception("Unsupported file, choose a cdt or dat file")
 
@@ -167,8 +167,10 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
            text = contents[ixstart:ixstop].strip()
            if text == 'ASCII' or text == 'CHAN' :   # test for alphanumeric values
                a[i] = 1
-           elif text.isnumeric() :
+           try:
                a[i] = float(text)                   # assign if it was a number
+           except ValueError:
+               pass
     
     # derived variables.  numbers (1) (2) etc are the token numbers
     nSamples    = int(a[0]  + a[int(0 + nt / 2)])
@@ -179,12 +181,12 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
     nASCII      = int(a[5]  + a[int(5 + nt / 2)])
     nMultiplex  = int(a[6]  + a[int(6 + nt / 2)])
     fSampleTime =     a[7]  + a[int(7 + nt / 2)]
-
-    datainfo = { "samples" : nSamples, "channels" : nChannels, "trials" : nTrials, "samplingfreq" : fFrequency }
-    log.info('Number of samples = %s, number of channels = %s, number of trials/epochs = %s, sampling frequency = %s Hz', str(nSamples), str( nChannels), str(nTrials), str(fFrequency))
                     
     if fFrequency == 0 or fSampleTime != 0:
         fFrequency = 1000000 / fSampleTime
+    
+    datainfo = { "samples" : nSamples, "channels" : nChannels, "trials" : nTrials, "samplingfreq" : fFrequency }
+    log.info('Number of samples = %s, number of channels = %s, number of trials/epochs = %s, sampling frequency = %s Hz', str(nSamples), str( nChannels), str(nTrials), str(fFrequency))
     
     # try to guess number of samples based on datafile size
     if nSamples < 0:
@@ -426,7 +428,7 @@ def read(inputfilename='', plotdata = 1, verbosity = 2):
         tixstop = contents.find('REMARK_LIST END_LIST')
         
         if tixstart != -1 and tixstop != 1 :
-            annotations = contents[tixstart:tixstop - 1].splitlines()
+            annotations = contents[tixstart+1:tixstop].splitlines()
 
         log.info('Found events')
 
